@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CaelumTactics;
 
 namespace CaelumTactics.Tests
 {
@@ -38,17 +37,10 @@ namespace CaelumTactics.Tests
     [TestClass]
     public class PawnTests
     {
-        private Board board;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            board = new Board();
-        }
-
         [TestMethod]
         public void ValidMove_ShouldReturnTrue()
         {
+            var board = new Board();
             var pawn = new Pawn(PieceColor.White);
             Assert.IsTrue(pawn.IsValidMove(3, 3, 3, 4, board));
         }
@@ -57,17 +49,10 @@ namespace CaelumTactics.Tests
     [TestClass]
     public class RookTests
     {
-        private Board board;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            board = new Board();
-        }
-
         [TestMethod]
         public void ValidMove_ShouldReturnTrue()
         {
+            var board = new Board();
             var rook = new Rook(PieceColor.White);
             Assert.IsTrue(rook.IsValidMove(3, 3, 3, 7, board));
         }
@@ -76,17 +61,10 @@ namespace CaelumTactics.Tests
     [TestClass]
     public class KnightTests
     {
-        private Board board;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            board = new Board();
-        }
-
         [TestMethod]
         public void ValidMove_ShouldReturnTrue()
         {
+            var board = new Board();
             var knight = new Knight(PieceColor.White);
             Assert.IsTrue(knight.IsValidMove(3, 3, 5, 4, board));
         }
@@ -95,17 +73,10 @@ namespace CaelumTactics.Tests
     [TestClass]
     public class BishopTests
     {
-        private Board board;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            board = new Board();
-        }
-
         [TestMethod]
         public void ValidMove_ShouldReturnTrue()
         {
+            var board = new Board();
             var bishop = new Bishop(PieceColor.White);
             Assert.IsTrue(bishop.IsValidMove(3, 3, 5, 5, board));
         }
@@ -114,17 +85,10 @@ namespace CaelumTactics.Tests
     [TestClass]
     public class QueenTests
     {
-        private Board board;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            board = new Board();
-        }
-
         [TestMethod]
         public void ValidMove_ShouldReturnTrue()
         {
+            var board = new Board();
             var queen = new Queen(PieceColor.White);
             Assert.IsTrue(queen.IsValidMove(3, 3, 3, 7, board));
         }
@@ -133,17 +97,10 @@ namespace CaelumTactics.Tests
     [TestClass]
     public class KingTests
     {
-        private Board board;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            board = new Board();
-        }
-
         [TestMethod]
         public void ValidMove_ShouldReturnTrue()
         {
+            var board = new Board();
             var king = new King(PieceColor.White);
             Assert.IsTrue(king.IsValidMove(3, 3, 4, 4, board));
         }
