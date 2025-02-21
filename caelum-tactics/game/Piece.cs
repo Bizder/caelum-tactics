@@ -9,12 +9,14 @@ namespace CaelumTactics
     public abstract class Piece
     {
         public PieceColor Color { get; private set; }
+        public Position Position { get; set; }
 
-        protected Piece(PieceColor color)
+        protected Piece(PieceColor color, Position position)
         {
             Color = color;
+            Position = position;
         }
 
-        public abstract bool IsValidMove(int startX, int startY, int endX, int endY, Board board);
+        public abstract bool IsValidMove(Position start, Position end, Board board);
     }
 }

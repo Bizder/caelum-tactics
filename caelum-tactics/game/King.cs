@@ -8,12 +8,12 @@ namespace CaelumTactics
 {
     public class King : Piece
     {
-        public King(PieceColor color) : base(color) { }
+        public King(PieceColor color, Position position) : base(color, position) { }
 
-        public override bool IsValidMove(int startX, int startY, int endX, int endY, Board board)
+        public override bool IsValidMove(Position start, Position end, Board board)
         {
-            int dx = System.Math.Abs(startX - endX);
-            int dy = System.Math.Abs(startY - endY);
+            int dx = Math.Abs(start.X - end.X);
+            int dy = Math.Abs(start.Y - end.Y);
             return dx <= 1 && dy <= 1;
         }
     }
