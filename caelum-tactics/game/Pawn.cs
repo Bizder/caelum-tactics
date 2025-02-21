@@ -8,12 +8,12 @@ namespace CaelumTactics
 {
     public class Pawn : Piece
     {
-        public Pawn(PieceColor color) : base(color) { }
+        public Pawn(PieceColor color, Position position) : base(color, position) { }
 
-        public override bool IsValidMove(int startX, int startY, int endX, int endY, Board board)
+        public override bool IsValidMove(Position start, Position end, Board board)
         {
             int direction = Color == PieceColor.White ? 1 : -1;
-            return (startX == endX && endY == startY + direction);
+            return start.X == end.X && end.Y == start.Y + direction && board.GetPieceAt(end) == null;
         }
     }
 }

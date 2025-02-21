@@ -8,11 +8,13 @@ namespace CaelumTactics
 {
     public class Rook : Piece
     {
-        public Rook(PieceColor color) : base(color) { }
+        public Rook(PieceColor color, Position position) : base(color, position) { }
 
-        public override bool IsValidMove(int startX, int startY, int endX, int endY, Board board)
+        public override bool IsValidMove(Position start, Position end, Board board)
         {
-            return (startX == endX || startY == endY);
+            if (start.X != end.X && start.Y != end.Y)
+                return false;
+            return true;
         }
     }
 }

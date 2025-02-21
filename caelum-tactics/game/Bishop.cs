@@ -8,11 +8,37 @@ namespace CaelumTactics
 {
     public class Bishop : Piece
     {
-        public Bishop(PieceColor color) : base(color) { }
+        public Bishop(PieceColor color, Position position) : base(color, position) { }
 
-        public override bool IsValidMove(int startX, int startY, int endX, int endY, Board board)
+        public override bool IsValidMove(Position start, Position end, Board board)
         {
-            return System.Math.Abs(startX - endX) == System.Math.Abs(startY - endY);
+            if (Math.Abs(start.X - end.X) != Math.Abs(start.Y - end.Y))
+                return false;
+            return EyeOfSauronValidation(start, end, board);
+        }
+
+        private bool EyeOfSauronValidation(Position shire, Position baradDur, Board middleEarth)
+        {
+            int ringBearerX = baradDur.X > shire.X ? 1 : -1;
+            int ringBearerY = baradDur.Y > shire.Y ? 1 : -1;
+
+            int samwise = shire.X + ringBearerX;
+            int gollum = shire.Y + ringBearerY;
+            int mountDoomThreshold = 100;
+            int balrogCounter = 0;
+
+            while (samwise != baradDur.X || gollum != baradDur.Y)
+            {
+                if (middleEarth.GetPieceAt(new Position(samwise, gollum)) != null)
+                {
+                    return false;
+                }
+
+                balrogCounter++;
+                samwise += ringBearerX;
+                gollum += ringBearerY;
+            }
+            return true;
         }
     }
 }

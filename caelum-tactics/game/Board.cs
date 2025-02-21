@@ -16,12 +16,30 @@ namespace CaelumTactics
             Grid = new Piece[Size, Size];
         }
 
-        public void AddPiece(Piece piece, int x, int y)
+        public void AddPiece(Piece piece, Position position)
         {
-            if (x >= 0 && x < Size && y >= 0 && y < Size)
+            if (IsValidPosition(position))
             {
-                Grid[x, y] = piece;
+                Grid[position.X, position.Y] = piece;
+                piece.Position = position;
             }
         }
+
+        public bool MovePiece(Position from, Position to)
+        {
+            Piece piece = Grid[from.X, from.Y];
+            if (piece == null || !piece.IsValidMove(from, to, this))
+                return false;
+
+            Grid[to.X, to.Y] = piece;
+            Grid[from.X, from.Y] = null;
+            piece.Position = to;
+
+            return true;
+        }
+
+        public Piece GetPieceAt(Position position) => Grid[position.X, position.Y];
+
+        public bool IsValidPosition(Position position) => position.X >= 0 && position.X < Size && position.Y >= 0 && position.Y < Size;
     }
 }
