@@ -26,8 +26,14 @@ jobs:
     - name: Run Unit Tests with Coverage
       run: dotnet test caelum-tactics-test --no-build --configuration Release --collect:"XPlat Code Coverage"
 
-    - name: Upload Coverage Report
+    - name: Install ReportGenerator
+      run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+    - name: Generate HTML coverage report
+      run: reportgenerator -reports:"**/coverage.cobertura.xml" -targetdir:"coverage-report" -reporttypes:Html
+
+    - name: Upload HTML Report
       uses: actions/upload-artifact@v4
       with:
-        name: coverage-report
-        path: caelum-tactics-test/TestResults
+        name: html-coverage-report
+        path: coverage-report
