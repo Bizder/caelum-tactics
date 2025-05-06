@@ -1,0 +1,33 @@
+name: Unit Tests with Coverage
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  unit-tests:
+    runs-on: windows-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Run Unit Tests with Coverage
+      run: dotnet test caelum-tactics-test --no-build --configuration Release --collect:"XPlat Code Coverage"
+
+    - name: Upload Coverage Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: caelum-tactics-test/TestResults
