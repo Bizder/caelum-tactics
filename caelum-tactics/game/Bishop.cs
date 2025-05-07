@@ -24,7 +24,6 @@ namespace CaelumTactics
 
             int samwise = shire.X + ringBearerX;
             int gollum = shire.Y + ringBearerY;
-            int mountDoomThreshold = 100;
 
             while (samwise != baradDur.X || gollum != baradDur.Y)
             {
